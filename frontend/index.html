@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handwritten Digit Recognition</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Handwritten Digit Recognition</h1>
+    <p>Draw or upload a digit from 0 to 9 and the CNN will predict it.</p>
+    <span id="api-status" class="status status-checking">Checking API...</span>
+  </header>
+
+  <main class="layout">
+    <section class="card" id="input-card">
+      <h2>Draw or upload a digit</h2>
+      <div class="canvas-wrapper">
+        <canvas id="draw-canvas" width="280" height="280" aria-label="Drawing area for a handwritten digit"></canvas>
+        <p id="canvas-hint" class="canvas-hint">Draw a digit here</p>
+      </div>
+
+      <div class="button-row">
+        <button id="predict-button" class="button button-primary" type="button">Predict</button>
+        <button id="clear-button" class="button button-secondary" type="button">Clear</button>
+        <button id="upload-button" class="button button-secondary" type="button">Upload image</button>
+        <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      </div>
+
+      <div id="upload-preview" class="upload-preview" hidden>
+        <img id="preview-image" alt="Preview of the uploaded image">
+        <span id="file-name" class="file-name"></span>
+      </div>
+
+      <p id="input-message" class="input-message" role="alert" hidden></p>
+    </section>
+
+    <section class="card" id="result-card">
+      <h2>Prediction</h2>
+      <div id="result-area" aria-live="polite">
+        <p id="result-placeholder" class="placeholder">Draw or upload a digit, then press Predict.</p>
+
+        <div id="result-loading" class="loading" hidden>
+          <span class="spinner"></span>
+          <span>Predicting...</span>
+        </div>
+
+        <p id="result-error" class="result-error" role="alert" hidden></p>
+
+        <div id="result-content" hidden>
+          <div id="predicted-digit" class="predicted-digit">-</div>
+          <p class="confidence-text">Confidence: <strong id="confidence-value">-</strong></p>
+          <p id="low-confidence-note" class="low-confidence-note" hidden>
+            The model is not very sure about this digit. Try drawing it larger and clearer.
+          </p>
+
+          <h3 class="chart-title">Probability for each digit</h3>
+          <div id="probability-chart" class="probability-chart" role="list" aria-label="Probability for each digit"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Built with TensorFlow, FastAPI, HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

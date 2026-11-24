@@ -1,0 +1,15 @@
+venv/
+**/__pycache__/
+*.pyc
+.git/
+.gitignore
+.vscode/
+.env
+test_images/
+make_test_images.py
+make_bad_test_files.py
+debug_prediction.py
+*.zip
+README.md
+Dockerfile
+.dockerignore
